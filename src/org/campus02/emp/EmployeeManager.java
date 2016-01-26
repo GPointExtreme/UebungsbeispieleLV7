@@ -45,5 +45,13 @@ public class EmployeeManager {
 		}
 		return list;
 	}
+	
+	public ArrayList<Employee> returnAllEmployee() {
+		ArrayList<Employee> list = new ArrayList<>();
+		for (Employee employee : list) {
+			list.add(employee);
+		}
+		return list;
+	}
 
 }

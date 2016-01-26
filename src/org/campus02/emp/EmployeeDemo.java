@@ -7,26 +7,39 @@ public class EmployeeDemo {
 	public static void main(String[] args) {
 		
 		ArrayList<Employee> list = new ArrayList<>();
+		EmployeeManager em = new EmployeeManager(list);
 		
-		EmployeeManager Manager = new EmployeeManager(list);
+		Employee Mitarbeiter1 = new Employee(1, "Mitarbeiter1", 6000, "GTC", "CEO");
+		em.addEmployee(Mitarbeiter1);
 		
-		Employee emp1 = new Employee(1, "emp1", 2000, "IT");
-		list.add(emp1);
-		Employee emp2 = new Employee(2, "emp2", 1000, "IT");
-		list.add(emp2);
-		Employee emp3 = new Employee(3, "emp3", 3000, "IT");
-		list.add(emp3);
-		Employee emp4 = new Employee(4, "emp4", 5000, "HR");
-		list.add(emp4);
+		Employee Mitarbeiter2 = new Employee(2, "Mitarbeiter2", 4000, "IT", "CTO");
+		em.addEmployee(Mitarbeiter2);
+		Mitarbeiter2.setSuperior(Mitarbeiter1);
 		
-		System.out.println(Manager.findByMaxSalary());
+		Employee Mitarbeiter3 = new Employee(3, "Mitarbeiter3", 2000, "IT", "DEV");
+		em.addEmployee(Mitarbeiter3);
+		Mitarbeiter3.setSuperior(Mitarbeiter2);
 		
-		System.out.println(Manager.findByEmpNumber(1));
+		Employee Mitarbeiter4 = new Employee(4, "Mitarbeiter4", 2000, "IT", "DEV");
+		em.addEmployee(Mitarbeiter4);
+		Mitarbeiter4.setSuperior(Mitarbeiter2);
 		
-		System.out.println(Manager.findByDepartment("IT"));
+		Employee Mitarbeiter5 = new Employee(5, "Mitarbeiter5", 3000, "HR", "HR");
+		em.addEmployee(Mitarbeiter5);
+		Mitarbeiter5.setSuperior(Mitarbeiter1);
 		
+		System.out.println(OrganigramHandler.getChainOfCommand(Mitarbeiter3));
 		
-
+		//CEO seine Mitarbeiter geben.
+		Mitarbeiter1.addSubordinate(Mitarbeiter2);
+		Mitarbeiter1.addSubordinate(Mitarbeiter5);
+				
+		//CEO seine Mitarbeiter geben.
+		Mitarbeiter2.addSubordinate(Mitarbeiter3);
+		Mitarbeiter2.addSubordinate(Mitarbeiter4);
+		
+		System.out.println(OrganigramHandler.processHierachy(Mitarbeiter1));
+		
 	}
 
 }
